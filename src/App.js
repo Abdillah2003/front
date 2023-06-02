@@ -2,9 +2,6 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Register from './kode/Register';
 import Login from './kode/Login';
-import FileJamur from './kode/FileJamur';
-import AddJamur from './kode/Tambahjamur';
-import EditJamur from './kode/Edit';
 import Jamur from './jamur/Jamur';
 
 function App() {

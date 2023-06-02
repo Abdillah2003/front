@@ -17,7 +17,7 @@ const Jamur = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch("http://localhost:3000/api/jamur");
+      const response = await fetch("https://backend-dot-tcc-2-d-123200017.df.r.appspot.com/api/jamur");
       const jsonData = await response.json();
       setData(jsonData);
       setLoading(false);
@@ -29,7 +29,7 @@ const Jamur = () => {
 
   const handleTambah = async () => {
     try {
-      const response = await fetch("http://localhost:3000/api/addJamur", {
+      const response = await fetch("https://backend-dot-tcc-2-d-123200017.df.r.appspot.com/api/addJamur", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -67,7 +67,7 @@ const Jamur = () => {
 
   const handleUpdate = async () => {
     try {
-      const response = await fetch(`http://localhost:3000/api/updateJamur/${editItemId}`, {
+      const response = await fetch(`https://backend-dot-tcc-2-d-123200017.df.r.appspot.com/api/updateJamur/${editItemId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -114,7 +114,7 @@ const Jamur = () => {
 
   const handleDelete = async (id_mush) => {
     try {
-      const response = await fetch(`http://localhost:3000/api/deleteJamur/${id_mush}`, {
+      const response = await fetch(`https://backend-dot-tcc-2-d-123200017.df.r.appspot.com/api/deleteJamur/${id_mush}`, {
         method: "DELETE",
       });
   

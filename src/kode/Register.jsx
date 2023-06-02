@@ -6,12 +6,13 @@ function Register() {
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [user_password, setPassword] = useState('');
+  const [user_email, setEmail] = useState('')
   const [registrationStatus, setRegistrationStatus] = useState('');
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    if (username && user_password) {
-      const response = await fetch('http://localhost:3000/api/checkUsername', {
+    if (username && user_email && user_password) {
+      const response = await fetch('https://backend-dot-tcc-2-d-123200017.df.r.appspot.com/api/checkUsername', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -26,20 +27,21 @@ function Register() {
       if (data.exists) {
         setRegistrationStatus('Username already exists. Please choose a different username.');
       } else {
-        const registerResponse = await fetch('http://localhost:3000/api/addUser', {
+        const registerResponse = await fetch('https://backend-dot-tcc-2-d-123200017.df.r.appspot.com/api/addUsers', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
             username,
+            user_email,
             user_password,
           })
         });
 
         if (registerResponse.ok) {
           setRegistrationStatus('User registered successfully!');
-          navigate('/login');
+          navigate('/');
         } else {
           setRegistrationStatus('Failed to register.');
         }
@@ -70,6 +72,16 @@ function Register() {
           </div>
           <div className="mb-4">
             <input
+              type="email"
+              value={user_email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+              placeholder="Email"
+              aria-label="Email"
+            />
+          </div>
+          <div className="mb-4">
+            <input
               type="password"
               value={user_password}
               onChange={(e) => setPassword(e.target.value)}
@@ -80,7 +92,7 @@ function Register() {
           </div>
           <div className="mt-8">
             <button
-              disabled={!username || !user_password}
+              disabled={!username || !user_email || !user_password }
               className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors duration-300"
             >
               Create
